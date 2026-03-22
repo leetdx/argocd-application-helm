@@ -20,7 +20,7 @@ spec:
     {{- end }}
     helm:
       valueFiles:
-        - argocd-application-helm/values/guestbook/guestbook-apac.yaml
+        - ../../values/guestbook/guestbook-apac.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
