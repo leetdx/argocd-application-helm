@@ -2,13 +2,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guestbook-apac-v2
+  name: customer-journey-apac
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: guestbook-apac-v2
+    namespace: customer-journey-apac
     server: {{ $config.spec.destination.server | quote }}
   project: default
   source:
@@ -17,7 +17,7 @@ spec:
     targetRevision: {{ $config.spec.source.targetRevision }}
     helm:
       valueFiles:
-        - ../../values/guestbook/guestbook-apac-v2.yaml
+        - ../../values/customer-journey/customer-journey-apac.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
