@@ -1,0 +1,29 @@
+{{- $config := $.Values.config -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-apac
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .namespace | default .name | quote }}
+    server: {{ $config.spec.destination.server | quote }}
+  project: default
+  source:
+    path: charts/v1
+    repoURL: {{ $config.spec.source.repoURL }}
+    targetRevision: {{ $config.spec.source.targetRevision }}
+    {{- with .tool }}
+    {{- . | toYaml | nindent 4 }}
+    {{- end }}
+    helm:
+      valueFiles:
+        - values/guestbook/guestbook-apac.yaml
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
