@@ -5,4 +5,4 @@ config:
     source:
       path: argocd-apps
       repoURL: https://github.com/leetdx/argocd-application-helm
-      targetRevision: main
+      targetRevision: dev
