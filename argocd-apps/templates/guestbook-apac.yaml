@@ -8,16 +8,13 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: {{ .namespace | default .name | quote }}
+    namespace: guestbook-apac
     server: {{ $config.spec.destination.server | quote }}
   project: default
   source:
     path: charts/v1
     repoURL: {{ $config.spec.source.repoURL }}
     targetRevision: {{ $config.spec.source.targetRevision }}
-    {{- with .tool }}
-    {{- . | toYaml | nindent 4 }}
-    {{- end }}
     helm:
       valueFiles:
         - ../../values/guestbook/guestbook-apac.yaml
