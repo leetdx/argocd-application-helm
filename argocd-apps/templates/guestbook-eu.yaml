@@ -1,0 +1,26 @@
+{{- $config := $.Values.config -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-eu
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: guestbook-eu
+    server: {{ $config.spec.destination.server | quote }}
+  project: default
+  source:
+    path: charts/v1
+    repoURL: {{ $config.spec.source.repoURL }}
+    targetRevision: {{ $config.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+        - ../../values/guestbook/guestbook-eu.yaml
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
