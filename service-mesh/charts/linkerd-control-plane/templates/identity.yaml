@@ -1,4 +1,5 @@
 {{if .Values.identity -}}
+{{- $existingSecret := (lookup "v1" "Secret" .Release.Namespace "linkerd-trust-anchor") }}
 
 {{- $identityTrustAnchorsPEM := .Values.identityTrustAnchorsPEM -}}
 {{- if not $identityTrustAnchorsPEM -}}
