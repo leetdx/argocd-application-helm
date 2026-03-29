@@ -11,3 +11,4 @@ spec:
   source:
     path: ./service-mesh/argo-apps
     repoURL: https://github.com/leetdx/argocd-application-helm.git
+    targetRevision: dev
