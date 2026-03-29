@@ -1,8 +1,14 @@
 {{if .Values.identity -}}
+
+# {{- $secret := lookup "v1" "Secret" "linkerd" "linkerd-trust-anchor" -}}
+# {{- if and $secret (not (empty $secret.data.tls.crt)) -}}
+# {{- $_ := set .Values "identityTrustAnchorsPEM" (b64dec $secret.data.tls.crt) -}}
+# {{- end -}}
+
 {{- $secret := lookup "v1" "Secret" "linkerd" "linkerd-trust-anchor" -}}
-{{- if and $secret (not (empty $secret.data.tls.crt)) -}}
-{{- $_ := set .Values "identityTrustAnchorsPEM" (b64dec $secret.data.tls.crt) -}}
-{{- end -}}
+{{- if $secret }}
+{{- $_ := set .Values "identityTrustAnchorsPEM" (index $secret.data "tls.crt" | b64dec) -}}
+{{- end }}
 ---
 ###
 ### Identity Controller Service
