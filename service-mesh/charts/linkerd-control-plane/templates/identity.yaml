@@ -48,8 +48,8 @@ metadata:
     {{ include "partials.annotations.created-by" . }}
 data:
   ca-bundle.crt: |-{{$identityTrustAnchorsPEM | trim | nindent 4}}
-  crt: |
-  {{- index $existingSecret.data "tls.crt" | b64dec | nindent 6 }}
+  debug-namespace: "{{ .Release.Namespace }}"
+  debug-secret-found: "{{ if $existingSecret }}true{{ else }}false{{ end }}"
 ---
 {{- end}}
 kind: Service
