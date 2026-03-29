@@ -17,7 +17,7 @@ spec:
     targetRevision: {{ $config.spec.source.targetRevision }}
     helm:
       valueFiles:
-        - ../../values/connector/connector-apac.yaml
+        - ../../values/connector/connector-apac-v3.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
