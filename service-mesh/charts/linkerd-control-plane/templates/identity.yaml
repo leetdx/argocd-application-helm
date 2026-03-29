@@ -1,6 +1,12 @@
 {{if .Values.identity -}}
 
-{{- if not .Values.identityTrustAnchorsPEM }}
+{{- $identityTrustAnchorsPEM := .Values.identityTrustAnchorsPEM -}}
+{{- if not $identityTrustAnchorsPEM -}}
+{{- /*
+  If the user did not provide identity trust anchors, attempt to look up an existing secret containing
+  the trust anchors. This allows users to manage the trust anchors separately from the rest of the
+  control plane, which is important for rotation.
+*/}}
 {{- $existingSecret := (lookup "v1" "Secret" .Release.Namespace "linkerd-trust-anchor") }}
 {{- if $existingSecret }}
 {{- $identityTrustAnchorsPEM = index $existingSecret.data "tls.crt"}}
