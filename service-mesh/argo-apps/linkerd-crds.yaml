@@ -6,9 +6,9 @@ metadata:
 spec:
   project: service-mesh
   source:
-    chart: linkerd-crds
-    repoURL: https://helm.linkerd.io/stable
-    targetRevision: 1.4.0
+    path: service-mesh/charts/linkerd-crds
+    repoURL: https://github.com/leetdx/argocd-application-helm.git
+    targetRevision: dev
     helm:
   destination:
     namespace: linkerd
