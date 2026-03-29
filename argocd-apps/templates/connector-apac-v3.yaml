@@ -1,0 +1,26 @@
+{{- $config := $.Values.config -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: connector-apac
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: connector-apac
+    server: {{ $config.spec.destination.server | quote }}
+  project: default
+  source:
+    path: charts/v3
+    repoURL: {{ $config.spec.source.repoURL }}
+    targetRevision: {{ $config.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+        - ../../values/connector/connector-apac.yaml
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
