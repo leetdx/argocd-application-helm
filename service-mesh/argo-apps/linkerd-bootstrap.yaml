@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linkerd-bootstrap
+  namespace: argocd
+spec:
+  destination:
+    namespace: linkerd
+    server: https://kubernetes.default.svc
+  project: service-mesh
+  source:
+    path: service-mesh/resources/linkerd
+    repoURL: https://github.com/leetdx/argocd-application-helm.git

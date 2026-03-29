@@ -1,0 +1,22 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: linkerd-trust-anchor
+  namespace: linkerd
+spec:
+  encryptedData:
+    tls.crt: TODO
+    tls.key: TODO
+  template:
+    data: null
+    metadata:
+      annotations:
+        linkerd.io/created-by: linkerd/cli stable-2.12.0
+      creationTimestamp: null
+      labels:
+        linkerd.io/control-plane-component: identity
+        linkerd.io/control-plane-ns: linkerd
+      name: linkerd-trust-anchor
+      namespace: linkerd
+    type: kubernetes.io/tls
