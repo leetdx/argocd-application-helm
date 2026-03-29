@@ -11,3 +11,4 @@ spec:
   source:
     path: service-mesh/resources/linkerd
     repoURL: https://github.com/leetdx/argocd-application-helm.git
+    targetRevision: dev
