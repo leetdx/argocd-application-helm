@@ -1,20 +1,4 @@
 {{if .Values.identity -}}
-
-{{- $existingSecret := (lookup "v1" "Secret" .Release.Namespace "linkerd-trust-anchor") }}
-{{- $ns := lookup "v1" "Namespace" "" "kube-system" }}
-
-{{- $identityTrustAnchorsPEM := .Values.identityTrustAnchorsPEM -}}
-{{- if not $identityTrustAnchorsPEM -}}
-{{- /*
-  If the user did not provide identity trust anchors, attempt to look up an existing secret containing
-  the trust anchors. This allows users to manage the trust anchors separately from the rest of the
-  control plane, which is important for rotation.
-*/}}
-{{- $existingSecret := (lookup "v1" "Secret" .Release.Namespace "linkerd-trust-anchor") }}
-{{- if $existingSecret }}
-{{- $identityTrustAnchorsPEM = index $existingSecret.data "tls.crt"}}
-{{- end -}}
-{{- end -}}
 ---
 ###
 ### Identity Controller Service
@@ -49,10 +33,7 @@ metadata:
   annotations:
     {{ include "partials.annotations.created-by" . }}
 data:
-  ca-bundle.crt: |-{{$identityTrustAnchorsPEM | trim | nindent 4}}
-  debug-namespace: "{{ .Release.Namespace }}"
-  debug-secret-found: "{{ if $existingSecret }}true{{ else }}false{{ end }}"
-  debug-kube-system: "{{ if $ns }}true{{ else }}false{{ end }}"
+  ca-bundle.crt: |-{{.Values.identityTrustAnchorsPEM | trim | nindent 4}}
 ---
 {{- end}}
 kind: Service
