@@ -7,8 +7,6 @@ metadata:
     chart: {{ template "helm-guestbook.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 3
@@ -21,6 +19,8 @@ spec:
       labels:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
+      annotations:
+        linkerd.io/inject: enabled
     spec:
       containers:
         - name: {{ .Chart.Name }}
