@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: connector-apac
+  name: connector-apac-v3
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
