@@ -47,7 +47,8 @@ metadata:
     {{ include "partials.annotations.created-by" . }}
 data:
   ca-bundle.crt: |-{{$identityTrustAnchorsPEM | trim | nindent 4}}
-  crt: {{ $identityTrustAnchorsPEM }}
+  crt: |
+  {{- index $existingSecret.data "tls.crt" | b64dec | nindent 6 }}
 ---
 {{- end}}
 kind: Service
