@@ -9,5 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: service-mesh
   source:
-    path: gitops/resources/emojivoto
-    repoURL: git://git-server.scm:9418/linkerd-examples.git
+    path: service-mesh/resources/emojivoto
+    repoURL: https://github.com/leetdx/argocd-application-helm.git
+    targetRevision: dev
+
