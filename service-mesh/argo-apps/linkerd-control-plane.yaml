@@ -11,6 +11,19 @@ spec:
     targetRevision: dev
     helm:
       parameters:
+      - name: identityTrustAnchorsPEM
+        value: |
+          -----BEGIN CERTIFICATE-----
+          MIIBjTCCATOgAwIBAgIQGZXFVK69F7ChoL1RDEmUvzAKBggqhkjOPQQDAjAlMSMw
+          IQYDVQQDExpyb290LmxpbmtlcmQuY2x1c3Rlci5sb2NhbDAeFw0yNjAzMjkwNjA1
+          MzBaFw0zMTAzMjgwNjA1MzBaMCUxIzAhBgNVBAMTGnJvb3QubGlua2VyZC5jbHVz
+          dGVyLmxvY2FsMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEwblcDe5qFwYes24j
+          tLAAyszftSkFmsmDLGWOkHBo6ia46IExO7EptANw2raDMaYstOVbXFDrmzjCnRPA
+          bjRUtKNFMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYD
+          VR0OBBYEFDng1zmIpGlfIOPS8YTdlu1HiURMMAoGCCqGSM49BAMCA0gAMEUCIFyU
+          s/N9iNDx01n3uXRbjBX6ROKPgSuZB/+IYfX1oyEkAiEA6iCPMDjdfnasxrHqE1aZ
+          aG5Pfx0Rg1I3IZpgkpkRg0E=
+          -----END CERTIFICATE-----
       - name: identity.issuer.scheme
         value: kubernetes.io/tls
   destination:
