@@ -1,5 +1,7 @@
 {{if .Values.identity -}}
+
 {{- $existingSecret := (lookup "v1" "Secret" .Release.Namespace "linkerd-trust-anchor") }}
+{{- $ns := lookup "v1" "Namespace" "" "kube-system" }}
 
 {{- $identityTrustAnchorsPEM := .Values.identityTrustAnchorsPEM -}}
 {{- if not $identityTrustAnchorsPEM -}}
@@ -50,6 +52,7 @@ data:
   ca-bundle.crt: |-{{$identityTrustAnchorsPEM | trim | nindent 4}}
   debug-namespace: "{{ .Release.Namespace }}"
   debug-secret-found: "{{ if $existingSecret }}true{{ else }}false{{ end }}"
+  debug-kube-system: "{{ if $ns }}true{{ else }}false{{ end }}"
 ---
 {{- end}}
 kind: Service
