@@ -9,6 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: service-mesh
   source:
-    path: /service-mesh/argo-apps
+    path: service-mesh/argo-apps
     repoURL: https://github.com/leetdx/argocd-application-helm.git
     targetRevision: dev
