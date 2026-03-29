@@ -3,7 +3,6 @@
 {{- if and $secret (not (empty $secret.data.tls.crt)) -}}
 {{- $_ := set .Values "identityTrustAnchorsPEM" (b64dec $secret.data.tls.crt) -}}
 {{- end -}}
-{{- end -}}
 ---
 ###
 ### Identity Controller Service
