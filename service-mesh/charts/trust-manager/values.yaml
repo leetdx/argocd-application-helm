@@ -45,7 +45,7 @@ nameOverride: ""
 # The namespace to install trust-manager into.
 # If not set, the namespace of the release is used.
 # This is helpful when installing trust-manager as a chart dependency (sub chart).
-namespace: ""
+namespace: "trust-manager" ##########
 
 # For Private docker registries, authentication is needed. Registry secrets are applied to the service account.
 imagePullSecrets: []
@@ -76,13 +76,13 @@ image:
   # `legacy.example.io/quay.io/jetstack/...`. Prefer using the global
   # `imageRegistry`/`imageNamespace` values.
   # +docs:property
-  registry: quay.io
+  registry: quay.io ##########
 
   # Full repository override (takes precedence over `imageRegistry`, `imageNamespace`,
   # and `image.name`).
   # Example: quay.io/jetstack/trust-manager
   # +docs:property
-  repository: "jetstack"
+  repository: "jetstack" ##########
 
   # The image name for trust-manager.
   # This is used (together with `imageRegistry` and `imageNamespace`) to construct the full
@@ -93,7 +93,7 @@ image:
   # Override the image tag to deploy by setting this variable.
   # If no value is set, the chart's appVersion is used.
   # +docs:property
-  tag: v0.7.0
+  tag: v0.7.0 ##########
 
   # Target image digest. Override any tag, if set.
   # For example:
@@ -106,7 +106,7 @@ image:
 
 defaultPackage:
   # Whether to load the default trust package during pod initialization, and include it in main container args. This container enables the 'useDefaultCAs' source on Bundles.
-  enabled: false
+  enabled: false ##########
   # Kubernetes pod resource limits for default package init container.
   #
   # For example:
