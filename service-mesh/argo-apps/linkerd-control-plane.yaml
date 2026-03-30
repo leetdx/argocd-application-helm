@@ -65,3 +65,15 @@ spec:
     name:  linkerd-policy-validator-webhook-config
     jsonPointers:
     - /webhooks/0/clientConfig/caBundle
+  - group: apps
+    kind: Deployment
+    name: linkerd-destination
+    namespace: linkerd
+    jsonPointers:
+      - /spec/template/metadata/annotations/checksum~1config
+  - group: apps
+    kind: Deployment
+    name: linkerd-proxy-injector
+    namespace: linkerd
+    jsonPointers:
+      - /spec/template/metadata/annotations/checksum~1config
