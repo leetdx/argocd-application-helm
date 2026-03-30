@@ -82,13 +82,13 @@ image:
   # and `image.name`).
   # Example: quay.io/jetstack/trust-manager
   # +docs:property
-  repository: "jetstack" ##########
+  repository: "jetstack/trust-manager" ##########
 
   # The image name for trust-manager.
   # This is used (together with `imageRegistry` and `imageNamespace`) to construct the full
   # image reference.
   # +docs:property
-  name: trust-manager
+  # name: trust-manager ##########
 
   # Override the image tag to deploy by setting this variable.
   # If no value is set, the chart's appVersion is used.
