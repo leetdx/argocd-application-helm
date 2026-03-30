@@ -26,6 +26,8 @@ spec:
           -----END CERTIFICATE-----
       - name: identity.issuer.scheme
         value: kubernetes.io/tls
+      - name: disableHeartBeat
+        value: "true"
   destination:
     namespace: linkerd
     server: https://kubernetes.default.svc
