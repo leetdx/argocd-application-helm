@@ -76,7 +76,7 @@ image:
   # `legacy.example.io/quay.io/jetstack/...`. Prefer using the global
   # `imageRegistry`/`imageNamespace` values.
   # +docs:property
-  # registry: quay.io
+  registry: quay.io
 
   # Full repository override (takes precedence over `imageRegistry`, `imageNamespace`,
   # and `image.name`).
